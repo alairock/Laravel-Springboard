@@ -1,21 +1,31 @@
-## Laravel PHP Framework
+# Laravel Springboard
 
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework)
+This is a basic setup of Laravel to give you something to quickly start from. There are several things setup here.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+### Routing Classes
+Routes are organized in the `app/routes` folder. This way you can organize the routes any way you wish. I am currently organizing routes based on controllers.
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+### Helper Methods
+`pr($objectOrArray)` has been ported over from CakePHP. This is super convenient since it prints out the object or array legibly, wrapping it in `<pre>` tags. 
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+### Environment file.
+This is how I decided to set it up environment checking. You can tell Laravel which environment you are running based on an environment.php file in the bootstrap directory. This should not be maintained in your repo. The file just needs the following. Return environment name. eg. 'local', 'staging', 'production', etc.
 
-## Official Documentation
+	<?php
+	return 'local';
+	
+### Views
+Views are organized in directories, such that everything isn't lumped into the view folder.
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+### macros
 
-### Contributing To Laravel
+There is currently one macro, which allows you to create a simple navigation that dynamically detects the route, and adds a `.active` class to the link that matches the page.
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+### AUTH
+I made the decision to go with a pessimistic auth setup. I am using Zizaco\entrust as a base, and I organized it to filter everything through a blacklist class. By default it denies everything. There is a whitelist in `/config/whitelist.php` This is where you list all routes you want public. A role entitled 'Super Admin' is created and can access everything. You can also create roles and assign multiple roles per user. Roles include permissions that are based on the route AND the request type (POST, PUT, GET, PATCH and DELETE). All of which are managed in the admin dashboard.
 
-### License
+Also in the admin dashboard, you can login to any user account, and return to admin without logging in/out. You will also assume any permissions that the current logged in user has, while still being able to return to admin.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+### Composer
+
+Composer has a security issue where package requirement conflicts can result in 3rd party packages to be unexpectedly downloaded. Because of this I version the Vendor directory so I can maintain visibility on what packages actually get added.
