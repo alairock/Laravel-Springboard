@@ -17,9 +17,10 @@ class AuthTableSeeder extends Seeder {
 		$this->command->info('User table seeded!');
 
 		//Insert Role
-		$roles = array(
-			'name' => 'Super Admin',
-		);
+		$roles = [
+			['name' => 'Super Admin'],
+			['name' => 'Admin'],
+		];
 
 		DB::table('roles')->insert($roles);
 		$this->command->info('Role table seeded!');
@@ -27,6 +28,8 @@ class AuthTableSeeder extends Seeder {
 		// Insert relationship
 		$admin = User::where('username', '=', 'admin')->first();
 		$roleId = Role::where('name', '=', 'Super Admin')->first()->id;
+		$admin->attachRole($roleId);
+		$roleId = Role::where('name', '=', 'Admin')->first()->id;
 		$admin->attachRole($roleId);
 	}
 
