@@ -80,6 +80,11 @@ function pr($code){
 	}
 }
 
+function pre($code) {
+	pr($code);
+	exit;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

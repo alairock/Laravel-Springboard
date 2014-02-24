@@ -9,6 +9,13 @@ class BlackList extends Filter {
 				return;
 			}
 		}
+
+		// At this point we should be logged in. Lets check
+		// and redirect to login page if we aren't
+		if (\Auth::guest()) {
+			return \Redirect::guest('login');
+		}
+
 		//If we are the super admin, we can anything
 		if (\Entrust::hasRole('Super Admin')) {
 			return;
