@@ -19,6 +19,11 @@ class BaseController extends Controller {
 	 */
 	protected function setupLayout()
 	{
+		// Add correct theme if you are on the admin portion of the pages.
+		if (strstr(Route::getCurrentRoute()->getPath(), '/', 1) == 'admin') {
+			$this->layout = 'layouts.admin';
+		}
+
 		if ( ! is_null($this->layout))
 		{
 			$this->layout = View::make($this->layout);
