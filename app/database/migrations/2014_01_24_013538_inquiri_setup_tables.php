@@ -81,11 +81,11 @@ class InquiriSetupTables extends Migration {
             $table->string('key')->unique();
             $table->text('value');
             $table->string('title');
-            $table->string('description');
-            $table->string('input_type');
+            $table->string('description')->nullable();
+            $table->string('input_type')->nullable();
             $table->boolean('editable');
             $table->integer('weight');
-            $table->text('params');
+            $table->text('params')->nullable();
         });
 
         // Create the categories table

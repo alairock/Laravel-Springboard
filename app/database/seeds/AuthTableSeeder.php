@@ -32,6 +32,8 @@ class AuthTableSeeder extends Seeder {
 		$admin->attachRole($roleId);
 		$roleId = Role::where('name', '=', 'Admin')->first()->id;
 		$admin->attachRole($roleId);
+
+		$this->command->info('Added relationships!');
 	}
 
 }
