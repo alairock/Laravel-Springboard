@@ -8,6 +8,7 @@ class AuthTableSeeder extends Seeder {
 		$users = array(
 			'username' => 'admin',
 			'email' => 'admin@admin.com',
+			'slug' => 'admin',
 			'password' => Hash::make('password'),
 			'confirmation_code' => uniqid(),
 			'confirmed' => 1,
