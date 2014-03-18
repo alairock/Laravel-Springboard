@@ -4,6 +4,10 @@
 	</div> -->
 	<ul>
 		<?php echo HTML::admin_clever_link('/admin/dashboard', 'Dashboard', 'fa-home'); ?>
+		<?php $postsItems = [
+			['route' => '/admin/posts/create', 'text' => 'Create']
+		]; ?>
+		<?php echo HTML::admin_clever_dropdown('/admin/posts', 'Posts', 'fa-file', $postsItems); ?>
 		<?php echo HTML::admin_clever_link('/admin/users', 'Users', 'fa-user'); ?>
 		<?php $roleItems = [
 			['route' => '/admin/roles', 'text' => 'Roles'],
