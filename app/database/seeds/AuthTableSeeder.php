@@ -4,7 +4,7 @@ class AuthTableSeeder extends Seeder {
 
 	public function run()
 	{
-		//Insert User
+		// Insert User
 		$users = array(
 			'username' => 'admin',
 			'email' => 'admin@admin.com',
@@ -17,7 +17,7 @@ class AuthTableSeeder extends Seeder {
 		DB::table('users')->insert($users);
 		$this->command->info('User table seeded!');
 
-		//Insert Role
+		// Insert Role
 		$roles = [
 			['name' => 'Super Admin'],
 			['name' => 'Admin'],
@@ -34,6 +34,18 @@ class AuthTableSeeder extends Seeder {
 		$admin->attachRole($roleId);
 
 		$this->command->info('Added relationships!');
+
+		// Insert Default Category
+		$roles = [
+			[
+				'name' => 'Uncategorized',
+				'slug' => 'uncategorized',
+				'description' => '',
+			],
+		];
+
+		DB::table('roles')->insert($roles);
+		$this->command->info('Role table seeded!');
 	}
 
 }

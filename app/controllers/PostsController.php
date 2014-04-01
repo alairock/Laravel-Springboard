@@ -44,6 +44,12 @@ class PostsController extends BaseController {
 	public function store()
 	{
 		$input = Input::all();
+		$input['user_id'] = Auth::user()->id;
+
+		if (!isset($input['category_id'])) {
+			$input['category_id'] = 1;
+		}
+
 		$validation = Validator::make($input, Post::$rules);
 
 		if ($validation->passes())

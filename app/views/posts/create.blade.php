@@ -3,6 +3,8 @@
 {{ Form::open(array('route' => 'posts.store')) }}
             <div>{{ Form::label('title', 'Title:') }}</div>
             <div>{{ Form::text('title') }}</div>
+            <div>{{ Form::label('title', 'Slug:') }}</div>
+            <div>{{ Form::text('slug') }}</div>
             <div>{{ Form::label('body', 'Body:') }}</div>
             <div>{{ Form::textarea('body') }}</div>
             <div>&nbsp;</div>
